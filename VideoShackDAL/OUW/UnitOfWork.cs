@@ -6,15 +6,17 @@ using VideoShackDAL.Repositories;
 
 namespace VideoShackDAL.OUW
 {
-    class UnitOfWorkMemory : IUnitOfWork
+    class UnitOfWork : IUnitOfWork
     {
         public IVideoRepository VideoRepository { get; internal set; }
-        private InMemoryContext context;
+        public IOrderRepository OrderRepository { get; internal set; }
+        private VideoShackContext context;
 
-        public UnitOfWorkMemory()
+        public UnitOfWork()
         {
-            context = new InMemoryContext();
+            context = new VideoShackContext();
             VideoRepository = new VideoRepositoryEFMemory(context);
+            OrderRepository = new OrderRepository(context);
         }
 
         public int Complete()

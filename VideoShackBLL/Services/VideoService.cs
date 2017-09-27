@@ -5,7 +5,7 @@ using System.Text;
 using VideoShackBLL.BusinessObjects;
 using VideoShackBLL.Converters;
 using VideoShackDAL;
-using VideoShackDAL.Entites;
+using VideoShackDAL.Entities;
 
 namespace VideoShackBLL.Services
 {

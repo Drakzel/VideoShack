@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using VideoShackBLL.BusinessObjects;
-using VideoShackDAL.Entites;
+using VideoShackDAL.Entities;
 
 namespace VideoShackBLL.Converters
 {

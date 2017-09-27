@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VideoShackDAL.Entites
+namespace VideoShackDAL.Entities
 {
     public class Movie
     {

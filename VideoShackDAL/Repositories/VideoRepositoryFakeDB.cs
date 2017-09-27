@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VideoShackDAL.Entites;
+using VideoShackDAL.Entities;
 
 namespace VideoShackDAL.Repositories
 {

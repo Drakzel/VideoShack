@@ -2,23 +2,24 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using VideoShackDAL.Entites;
+using VideoShackDAL.Entities;
 
 namespace VideoShackDAL.Context
 {
-    class InMemoryContext : DbContext
+    class VideoShackContext : DbContext
     {
-        static DbContextOptions<InMemoryContext> options = 
-            new DbContextOptionsBuilder<InMemoryContext>()
+        static DbContextOptions<VideoShackContext> options = 
+            new DbContextOptionsBuilder<VideoShackContext>()
             .UseInMemoryDatabase("TheDB")
             .Options;
 
         //Options that we want in Memory
-        public InMemoryContext() : base(options)
+        public VideoShackContext() : base(options)
         {
 
         }
 
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

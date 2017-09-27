@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using VideoShackBLL;
+using VideoShackBLL.BusinessObjects;
 
 namespace VideoRestAPI
 {
@@ -32,6 +34,20 @@ namespace VideoRestAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                var facade = new BLLFacade();
+                facade.GetVideoService.Create(
+                    new MovieBO()
+                    {
+                        Name = "Titanic",
+                        Genre = "Drama"
+                    });
+
+                facade.GetVideoService.Create(
+                    new MovieBO()
+                    {
+                        Name = "Avatar the Last Airbender",
+                        Genre = "Adventure"
+                    });
             }
 
             app.UseMvc();
