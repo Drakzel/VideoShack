@@ -20,6 +20,6 @@ namespace VideoShackDAL.Context
         }
 
         public DbSet<Movie> Movies { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Collection> Collections { get; set; }
     }
 }

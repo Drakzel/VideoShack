@@ -12,46 +12,46 @@ namespace VideoRestAPI.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class OrdersController : Controller
+    public class CollectionController : Controller
     {
         BLLFacade facade = new BLLFacade();
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<OrderBO> Get()
+        public IEnumerable<CollectionBO> Get()
         {
-            return facade.GetOrderService.RetrieveAllOrders();
+            return facade.GetCollectionService.RetrieveAllCollections();
         }
 
         // GET: api/Order/5
-        [HttpGet("{id}", Name = "Get")]
-        public OrderBO Get(int id)
+        [HttpGet("{id}", Name = "GetCollection")]
+        public CollectionBO Get(int id)
         {
-            return facade.GetOrderService.RetrieveOrder(id);
+            return facade.GetCollectionService.RetrieveCollection(id);
         }
 
         // POST: api/Order
         [HttpPost]
-        public IActionResult Post([FromBody]OrderBO order)
+        public IActionResult Post([FromBody]CollectionBO collection)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            return Ok(facade.GetOrderService.Create(order));
+            return Ok(facade.GetCollectionService.Create(collection));
         }
 
         // PUT: api/Order/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]OrderBO order)
+        public IActionResult Put(int id, [FromBody]CollectionBO collection)
         {
-            if (id != order.OrderId)
+            if (id != collection.CollectionId)
             {
                 return StatusCode(405, "Path Id does not match Movie ID in json object");
             }
             try
             {
-                return Ok(facade.GetOrderService.Update(order));
+                return Ok(facade.GetCollectionService.Update(collection));
             }
             catch (InvalidOperationException e)
             {
@@ -63,7 +63,7 @@ namespace VideoRestAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            facade.GetOrderService.Delete(id);
+            facade.GetCollectionService.Delete(id);
         }
     }
 }

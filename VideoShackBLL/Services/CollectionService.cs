@@ -8,64 +8,63 @@ using VideoShackDAL;
 
 namespace VideoShackBLL.Services
 {
-    class OrderService : IOrderService
+    class CollectionService : ICollectionService
     {
         DALFacade facade;
-        OrderConverter conv = new OrderConverter();
+        CollectionConverter conv = new CollectionConverter();
 
-        public OrderService (DALFacade facade)
+        public CollectionService (DALFacade facade)
         {
             this.facade = facade;
         }
 
-        public OrderBO Create(OrderBO order)
+        public CollectionBO Create(CollectionBO order)
         {
             using (var uow = facade.UnitOfWork)
             {
-                var newOrder = uow.OrderRepository.Create(conv.Convert(order));
+                var newOrder = uow.CollectionRepository.Create(conv.Convert(order));
                 uow.Complete();
                 return conv.Convert(newOrder);
             }
         }
 
-        public OrderBO Delete(int id)
+        public CollectionBO Delete(int id)
         {
             using (var uow = facade.UnitOfWork)
             {
-                var OrderToDelete = uow.OrderRepository.DeleteOrder(id);
+                var OrderToDelete = uow.CollectionRepository.DeleteCollection(id);
                 uow.Complete();
                 return conv.Convert(OrderToDelete);
             }
         }
 
-        public List<OrderBO> RetrieveAllOrders()
+        public List<CollectionBO> RetrieveAllCollections()
         {
             using (var uow = facade.UnitOfWork)
             {
-                return uow.OrderRepository.RetrieveAllOrders().Select(conv.Convert).ToList();
+                return uow.CollectionRepository.RetrieveAllCollections().Select(conv.Convert).ToList();
             }
         }
 
-        public OrderBO RetrieveOrder(int id)
+        public CollectionBO RetrieveCollection(int id)
         {
             using (var uow = facade.UnitOfWork)
             {
-                var RetrievedOrder = uow.OrderRepository.RetrieveOrder(id);
+                var RetrievedOrder = uow.CollectionRepository.RetrieveCollection(id);
                 return conv.Convert(RetrievedOrder);
             }
         }
 
-        public OrderBO Update(OrderBO order)
+        public CollectionBO Update(CollectionBO collection)
         {
             using (var uow = facade.UnitOfWork)
             {
-                var OrderToUpdate = uow.OrderRepository.RetrieveOrder(order.OrderId);
+                var OrderToUpdate = uow.CollectionRepository.RetrieveCollection(collection.CollectionId);
                 if (OrderToUpdate == null)
                 {
                     throw new InvalidOperationException("Order not found.");
                 }
-                OrderToUpdate.DeliveryDate = order.DeliveryDate;
-                OrderToUpdate.OrderDate = order.OrderDate;
+                //OrderToUpdate.Movies = order.Movies, ?????
                 uow.Complete();
                 return conv.Convert(OrderToUpdate);
             }

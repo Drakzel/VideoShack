@@ -13,9 +13,9 @@ namespace VideoShackBLL
             get { return new VideoService(new DALFacade()); }
         }
 
-        public IOrderService GetOrderService
+        public ICollectionService GetCollectionService
         {
-            get { return new OrderService(new DALFacade()); }
+            get { return new CollectionService(new DALFacade()); }
         }
     }
 }

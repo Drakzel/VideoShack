@@ -9,14 +9,14 @@ namespace VideoShackDAL.OUW
     class UnitOfWork : IUnitOfWork
     {
         public IVideoRepository VideoRepository { get; internal set; }
-        public IOrderRepository OrderRepository { get; internal set; }
+        public ICollectionRepository CollectionRepository { get; internal set; }
         private VideoShackContext context;
 
         public UnitOfWork()
         {
             context = new VideoShackContext();
             VideoRepository = new VideoRepositoryEFMemory(context);
-            OrderRepository = new OrderRepository(context);
+            CollectionRepository = new CollectionRepository(context);
         }
 
         public int Complete()

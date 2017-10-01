@@ -7,7 +7,7 @@ namespace VideoShackDAL
     public interface IUnitOfWork : IDisposable
     {
         IVideoRepository VideoRepository { get; }
-        IOrderRepository OrderRepository { get; }
+        ICollectionRepository CollectionRepository { get; }
 
         int Complete();
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace VideoShackDAL.Entities
 {
@@ -10,5 +11,6 @@ namespace VideoShackDAL.Entities
         public string Name { get; set; }
         public string Genre { get; set; }
         public int Id { get; set; }
+        public List<Collection> Collection { get; set; }
     }
 }

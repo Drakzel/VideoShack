@@ -25,23 +25,23 @@ namespace VideoShackDAL.Repositories
         public Movie DeleteMovie(int id)
         {
             var movie = RetrieveById(id);
-            this.context.Movies.Remove(movie);
+            context.Movies.Remove(movie);
             return movie;
         }
 
         public List<Movie> RetrieveAllMovies()
         {
-            return this.context.Movies.ToList();
+            return context.Movies.ToList();
         }
 
         public Movie RetrieveById(int? id)
         {
-            return this.context.Movies.FirstOrDefault(x => x.Id == id);
+            return context.Movies.FirstOrDefault(x => x.Id == id);
         }
 
         public List<Movie> RetrieveByName(string name)
         {
-            return this.context.Movies.Where(x => x.Name == name).ToList();
+            return context.Movies.Where(x => x.Name == name).ToList();
         }
     }
 }

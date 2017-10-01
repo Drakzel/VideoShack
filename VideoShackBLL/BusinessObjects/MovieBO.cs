@@ -17,5 +17,7 @@ namespace VideoShackBLL.BusinessObjects
         public string Genre { get; set; }
 
         public int Id { get; set; }
+
+        public CollectionBO Collection { get; set; }
     }
 }
