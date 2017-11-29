@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace VideoShackDAL.Repositories
 
         public List<Collection> RetrieveAllCollections()
         {
-            return context.Collections.ToList();
+            return context.Collections.Include(o => o.Movies).ToList();
         }
 
         public Collection RetrieveCollection(int id)

@@ -23,7 +23,7 @@ namespace VideoRestAPI.Controllers
             return facade.GetCollectionService.RetrieveAllCollections();
         }
 
-        // GET: api/Order/5
+        // GET: api/Collection/5
         [HttpGet("{id}", Name = "GetCollection")]
         public CollectionBO Get(int id)
         {

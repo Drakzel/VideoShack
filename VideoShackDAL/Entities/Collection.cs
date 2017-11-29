@@ -8,9 +8,11 @@ namespace VideoShackDAL.Entities
     {
         public override string ToString()
         {
-            return $"\nOrder Id: {CollectionId}\nMovies: {Movies}\n";
+            return $"\nCollection Id: {CollectionId}\nCollection Name: {Name}\nMovies: {Movies}\n";
         }
         public int CollectionId { get; set; }
+        public string Name { get; set; }
+        public DateTime CreatedDate { get; set; }
         public List<Movie> Movies { get; set; }
     }
 }

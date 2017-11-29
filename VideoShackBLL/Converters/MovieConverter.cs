@@ -10,6 +10,7 @@ namespace VideoShackBLL.Converters
     {
         internal Movie Convert(MovieBO movie)
         {
+            if (movie == null) { return null; }
             return new Movie()
             {
                 Id = movie.Id,
@@ -20,6 +21,7 @@ namespace VideoShackBLL.Converters
 
         internal MovieBO Convert(Movie movie)
         {
+            if (movie == null) { return null; }
             return new MovieBO()
             {
                 Id = movie.Id,

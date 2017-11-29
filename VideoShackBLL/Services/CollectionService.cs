@@ -18,13 +18,13 @@ namespace VideoShackBLL.Services
             this.facade = facade;
         }
 
-        public CollectionBO Create(CollectionBO order)
+        public CollectionBO Create(CollectionBO collection)
         {
             using (var uow = facade.UnitOfWork)
             {
-                var newOrder = uow.CollectionRepository.Create(conv.Convert(order));
+                var newCollection = uow.CollectionRepository.Create(conv.Convert(collection));
                 uow.Complete();
-                return conv.Convert(newOrder);
+                return conv.Convert(newCollection);
             }
         }
 
@@ -32,9 +32,9 @@ namespace VideoShackBLL.Services
         {
             using (var uow = facade.UnitOfWork)
             {
-                var OrderToDelete = uow.CollectionRepository.DeleteCollection(id);
+                var CollectionToDelete = uow.CollectionRepository.DeleteCollection(id);
                 uow.Complete();
-                return conv.Convert(OrderToDelete);
+                return conv.Convert(CollectionToDelete);
             }
         }
 
@@ -50,8 +50,8 @@ namespace VideoShackBLL.Services
         {
             using (var uow = facade.UnitOfWork)
             {
-                var RetrievedOrder = uow.CollectionRepository.RetrieveCollection(id);
-                return conv.Convert(RetrievedOrder);
+                var RetrievedCollection = uow.CollectionRepository.RetrieveCollection(id);
+                return conv.Convert(RetrievedCollection);
             }
         }
 
@@ -59,14 +59,14 @@ namespace VideoShackBLL.Services
         {
             using (var uow = facade.UnitOfWork)
             {
-                var OrderToUpdate = uow.CollectionRepository.RetrieveCollection(collection.CollectionId);
-                if (OrderToUpdate == null)
+                var CollectionFromDB = uow.CollectionRepository.RetrieveCollection(collection.CollectionId);
+                if (CollectionFromDB == null)
                 {
-                    throw new InvalidOperationException("Order not found.");
+                    throw new InvalidOperationException("Collection not found.");
                 }
-                //OrderToUpdate.Movies = order.Movies, ?????
+                CollectionFromDB.CreatedDate = collection.CreatedDate;
                 uow.Complete();
-                return conv.Convert(OrderToUpdate);
+                return conv.Convert(CollectionFromDB);
             }
         }
     }

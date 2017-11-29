@@ -18,6 +18,7 @@ namespace VideoRestAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -35,19 +36,30 @@ namespace VideoRestAPI
             {
                 app.UseDeveloperExceptionPage();
                 var facade = new BLLFacade();
-                facade.GetVideoService.Create(
+
+                MovieBO movie = facade.GetVideoService.Create(
                     new MovieBO()
                     {
                         Name = "Titanic",
                         Genre = "Drama"
                     });
 
-                facade.GetVideoService.Create(
+                MovieBO movie2 = facade.GetVideoService.Create(
                     new MovieBO()
                     {
                         Name = "Avatar the Last Airbender",
                         Genre = "Adventure"
                     });
+
+                var collection = facade.GetCollectionService.Create(
+                    new CollectionBO()
+                    {
+                        CreatedDate = DateTime.Now.AddMonths(-1),
+                        Name = "Favorite Movies",
+                        Movies = new List<MovieBO> ()
+                    });
+                collection.Movies.Add(movie);
+                collection.Movies.Add(movie2);
             }
 
             app.UseMvc();

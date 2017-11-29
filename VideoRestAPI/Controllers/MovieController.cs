@@ -11,7 +11,7 @@ namespace VideoRestAPI.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class MoviesController : Controller
+    public class MovieController : Controller
     {
         BLLFacade facade = new BLLFacade();
         // GET: api/Movie
@@ -36,7 +36,14 @@ namespace VideoRestAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            return Ok(facade.GetVideoService.Create(movie));
+            try
+            {
+                return Ok(facade.GetVideoService.Create(movie));
+            }
+            catch (InvalidOperationException e)
+            {
+                return StatusCode(404, e.Message);
+            }
         }
         
         // PUT: api/Movie/5

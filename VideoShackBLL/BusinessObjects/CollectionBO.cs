@@ -8,9 +8,11 @@ namespace VideoShackBLL.BusinessObjects
     {
         public override string ToString()
         {
-            return $"\nCollectionId: {CollectionId}\nMovies: {Movies}\n";
+            return $"\nCollection Id: {CollectionId}\nCollection Name: {Name}\nMovies: {Movies}\n";
         }
         public int CollectionId { get; set; }
+        public string Name { get; set; }
+        public DateTime CreatedDate { get; set; }
         public List<MovieBO> Movies { get; set; }
     }
 }
